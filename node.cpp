@@ -6,4 +6,5 @@ Node::Node(int x,Node* p){
   left= NULL;
   parent = p;
   right= NULL;
+  color = 1;
 };
