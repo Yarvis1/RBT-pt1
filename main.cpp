@@ -16,6 +16,8 @@ Node* findMin(Node* node);
 Node* deleteNodeHelper(Node* root, int val);
 void deleteNode(Node*& root, int val);
 void fixBSTforRBTinsert(Node*& root, Node* z);red 
+rightRotate(root,z);
+leftRotate(root,z);
 
 int main() {
     vector<int> numbers;
@@ -107,30 +109,51 @@ while (z->parent && z->parent->color == 1) {
             Node* uncle = grandparent->right;
             if (uncle && uncle->color == 1) {
                 // three cases, 1, uncle red
-               
+                z->parent->color = 0;
+                uncle->color = 0;
+                grandparent->color = 1;
+                z = grandparent;
             } else {
                 if (z == z->parent->right) {
                     // 2, z is right child
+                    z = z->parent;
+                    leftRotate(root, z);
                 }
                 // 3, z is left child
-               
+                 z->parent->color = 0;
+                grandparent->color = 1;
+                rightRotate(root, grandparent);
             }
         } else {
             Node* uncle = grandparent->left;
             if (uncle && uncle->color == 1) {
                 // 1
-               
+                z->parent->color = 0;
+                uncle->color = 0;
+                grandparent->color = 1;
+                z = grandparent;
             } else {
                 if (z == z->parent->left) {
                     // 2
-                    
+                    z = z->parent;
+                    rightRotate(root, z);
                 }
-                // 2
-              
+                // 3
+                z->parent->color = 0;
+                grandparent->color = 1;
+                leftRotate(root, grandparent);
             }
         }
     }
     root->color = 0;
+}
+
+rightRotate(root,z){
+
+}
+
+leftRotate(root,z){
+
 }
 
 //print
