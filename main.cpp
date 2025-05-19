@@ -149,11 +149,40 @@ while (z->parent && z->parent->color == 1) {
 }
 
 void leftRotate(Node*& root, Node* x){
+    Node* y = x->right;
+    x->right = y->left;
+    if (y->left != nullptr)
+        y->left->parent = x;
 
+    y->parent = x->parent;
+    if (x->parent == nullptr)
+        root = y;
+    else if (x == x->parent->left)
+        x->parent->left = y;
+    else
+        x->parent->right = y;
+
+    y->left = x;
+    x->parent = y;
 }
 
+//same but swap x and y;
 void rightRotate(Node*& root, Node* x){
+    Node* x = y->left;
+    y->left = x->right;
+    if (x->right != nullptr)
+        x->right->parent = y;
 
+    x->parent = y->parent;
+    if (y->parent == nullptr)
+        root = x;
+    else if (y == y->parent->right)
+        y->parent->right = x;
+    else
+        y->parent->left = x;
+
+    x->right = y;
+    y->parent = x;
 }
 
 //print
