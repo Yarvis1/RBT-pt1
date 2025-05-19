@@ -58,7 +58,7 @@ int main() {
                 stringstream ss(inputLine);
                 int num;
                 while (ss >> num) {
-                    RBInsert(root, numbers[i]);
+                    RBInsert(root, num);
                 }
             }
         } else if (strcmp(input, "s") == 0) {
