@@ -9,7 +9,7 @@
 using namespace std;
 
 void RBInsert(Node*& root, int key);
-Node* BSTinsert(Node* root, int val, Node* parent);
+Node* BSTinsert(Node* root, Node* newNode);
 void print(Node* root, int space, int count);
 Node* search(Node* root, int val);
 Node* findMin(Node* node);
@@ -82,21 +82,19 @@ int main() {
 void RBInsert(Node*& root, int key) {
     Node* newNode = new Node(key, nullptr);
     newNode->color = 1; // red
-    root = bstInsert(root, newNode);
-    fixInsert(root, newNode);
+    root = BSTinsert(root, newNode);
+    fixBSTforRBTinsert(root, newNode);
 }
 
-Node* BSTinsert(Node* root, int val, Node* parent) {
-    if (root == nullptr) {
-        return new Node(val, parent);
-    }
+Node* BSTinsert(Node* root, Node*  newNode) {
+    if (root == nullptr) return newNode;
 
-    if (val < root->token) {
-        Node* leftChild = insert(root->left, val, root);
-        root->left = leftChild;
-    } else if (val > root->token) {
-        Node* rightChild = insert(root->right, val, root);
-        root->right = rightChild;
+    if (newNode->token < root->token) {
+        root->left = BSTinsert(root->left, newNode);
+        root->left->parent = root;
+    } else if (newNode->token > root->token) {
+        root->right = BSTinsert(root->right, newNode);
+        root->right->parent = root;
     }
     // Ignore duplicates
     return root;
@@ -167,7 +165,7 @@ void leftRotate(Node*& root, Node* x){
 }
 
 //same but swap x and y;
-void rightRotate(Node*& root, Node* x){
+void rightRotate(Node*& root, Node* y){
     Node* x = y->left;
     y->left = x->right;
     if (x->right != nullptr)
