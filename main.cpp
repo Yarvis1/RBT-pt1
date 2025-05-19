@@ -8,12 +8,14 @@
 
 using namespace std;
 
-Node* insert(Node* root, int val, Node* parent);
+void RBInsert(Node*& root, int key);
+Node* BSTinsert(Node* root, int val, Node* parent);
 void print(Node* root, int space, int count);
 Node* search(Node* root, int val);
 Node* findMin(Node* node);
 Node* deleteNodeHelper(Node* root, int val);
 void deleteNode(Node*& root, int val);
+void fixBSTforRBTinsert(Node*& root, Node* z);red 
 
 int main() {
     vector<int> numbers;
@@ -75,8 +77,14 @@ int main() {
     return 0;
 }
 
+void RBInsert(Node*& root, int key) {
+    Node* newNode = new Node(key, nullptr);
+    newNode->color = 1; // red
+    root = bstInsert(root, newNode);
+    fixInsert(root, newNode);
+}
 
-Node* insert(Node* root, int val, Node* parent) {
+Node* BSTinsert(Node* root, int val, Node* parent) {
     if (root == nullptr) {
         return new Node(val, parent);
     }
@@ -90,6 +98,10 @@ Node* insert(Node* root, int val, Node* parent) {
     }
     // Ignore duplicates
     return root;
+}
+
+void fixBSTforRBTinsert(Node*& root, Node* z){
+
 }
 
 //print
