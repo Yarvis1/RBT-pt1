@@ -15,9 +15,9 @@ Node* search(Node* root, int val);
 Node* findMin(Node* node);
 Node* deleteNodeHelper(Node* root, int val);
 void deleteNode(Node*& root, int val);
-void fixBSTforRBTinsert(Node*& root, Node* z);red 
-rightRotate(root,z);
-leftRotate(root,z);
+void fixBSTforRBTinsert(Node*& root, Node* z);
+void leftRotate(Node*& root, Node* x);
+void leftRotate(Node*& root, Node* y)
 
 int main() {
     vector<int> numbers;
@@ -148,11 +148,11 @@ while (z->parent && z->parent->color == 1) {
     root->color = 0;
 }
 
-rightRotate(root,z){
+void leftRotate(Node*& root, Node* x){
 
 }
 
-leftRotate(root,z){
+void rightRotate(Node*& root, Node* x){
 
 }
 
