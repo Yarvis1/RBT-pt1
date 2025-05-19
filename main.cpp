@@ -192,7 +192,13 @@ void print(Node* root, int space, int count) {
     print(root->right, space, count);
     cout << endl;
     for (int i = count; i < space; i++) cout << " ";
-    cout << root->token << endl;
+    cout << root->token;
+    if(root->color==0){
+	cout<<"(b)"<<endl;
+    }
+    else{
+	cout<<"(r)"<<endl;
+    }
     print(root->left, space, count);
 }
 
