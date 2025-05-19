@@ -16,8 +16,8 @@ Node* findMin(Node* node);
 Node* deleteNodeHelper(Node* root, int val);
 void deleteNode(Node*& root, int val);
 void fixBSTforRBTinsert(Node*& root, Node* z);
-void leftRotate(Node*& root, Node* x);
-void leftRotate(Node*& root, Node* y)
+void rightRotate(Node*& root, Node* x);
+void leftRotate(Node*& root, Node* y);
 
 int main() {
     vector<int> numbers;
@@ -49,7 +49,7 @@ int main() {
                     numbers.push_back(val);
                 }
                 for (int i = 0; i < numbers.size(); i++) {
-                    root = insert(root, numbers[i], nullptr);
+                    RBInsert(root, numbers[i]);
                 }
             } else if (strcmp(input, "M") == 0) {
                 string inputLine;
@@ -58,7 +58,7 @@ int main() {
                 stringstream ss(inputLine);
                 int num;
                 while (ss >> num) {
-                    root = insert(root, num, nullptr);
+                    RBInsert(root, numbers[i]);
                 }
             }
         } else if (strcmp(input, "s") == 0) {
