@@ -101,11 +101,13 @@ Node* BSTinsert(Node* root, Node*  newNode) {
 }
 
 void fixBSTforRBTinsert(Node*& root, Node* z){
-while (z->parent && z->parent->color == 1) {
+    while (z->parent && z->parent->color == 1) {
         Node* grandparent = z->parent->parent;
+        if (!grandparent) break; // if no grandparent parent is root
+
         if (z->parent == grandparent->left) {
             Node* uncle = grandparent->right;
-            if (uncle && uncle->color == 1) {
+            if (uncle != nullptr && uncle->color == 1) {
                 // three cases, 1, uncle red
                 z->parent->color = 0;
                 uncle->color = 0;
@@ -118,13 +120,13 @@ while (z->parent && z->parent->color == 1) {
                     leftRotate(root, z);
                 }
                 // 3, z is left child
-                 z->parent->color = 0;
+                z->parent->color = 0;
                 grandparent->color = 1;
                 rightRotate(root, grandparent);
             }
         } else {
             Node* uncle = grandparent->left;
-            if (uncle && uncle->color == 1) {
+            if (uncle != nullptr && uncle->color == 1) {
                 // 1
                 z->parent->color = 0;
                 uncle->color = 0;
